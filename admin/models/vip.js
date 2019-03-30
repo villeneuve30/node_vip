@@ -185,17 +185,17 @@ module.exports.getAllNationnalite = function(callback){
 module.exports.ajouterInfoVip = function(nationalite,nom,prenom,sexe,naissance,texte,dateInsertion,callback){
     db.getConnection(function(err, connexion) {
         if (!err) {
-            let sql = "INSERT INTO vip ('NATIONALITE_NUMERO', 'VIP_NOM', 'VIP_PRENOM','VIP_SEXE','VIP_NAISSANCE', 'VIP_TEXTE','VIP_DATE_INSERTION') VALUES ("+nationalite+",'"+nom+"','"+prenom+"','"+sexe+"','"+naissance+"','"+texte+"','"+dateInsertion+"');"
+            let sql = "INSERT INTO vip (NATIONALITE_NUMERO, VIP_NOM, VIP_PRENOM,VIP_SEXE,VIP_NAISSANCE, VIP_TEXTE,VIP_DATE_INSERTION) VALUES ("+nationalite+",'"+nom+"','"+prenom+"','"+sexe+"','"+naissance+"','"+texte+"','"+dateInsertion+"');"
             //console.log(sql);
             connexion.query(sql, callback);
             connexion.release();
         }
     });
 };
-module.exports.ajouterPhotoVip = function(callback){
+module.exports.ajouterPhotoVip = function(sujet,commentaire,adresse,callback){
     db.getConnection(function(err, connexion) {
         if (!err) {
-            let sql = ""
+            let sql = "INSERT INTO photo (PHOTO_NUMERO,VIP_NUMERO,PHOTO_SUJET,PHOTO_COMMENTAIRE,PHOTO_ADRESSE) VALUES (1,LAST_INSERT_ID(),'"+sujet+"','"+commentaire+"','"+adresse+"');"
             //console.log(sql);
             connexion.query(sql, callback);
             connexion.release();

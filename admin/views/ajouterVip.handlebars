@@ -1,8 +1,6 @@
 <h1>Ajouter</h1>
 <form method="POST" action="/vips/ajouter/validationAjout">
-    Photo :
-    <input type="file" accept=".jpg, .png, .jpeg, .bmp, .gif" name="photo"/></br></br>
-    
+
     Nom :
     <input type="text" name="nom"/> </br></br>
 
@@ -10,8 +8,8 @@
     <input type="text" name="prenom"/> </br></br>
 
     Nationnalité :
-    <select name="nationnalite"> </br></br>
-        {{#each nationnalite}}
+    <select name="nationalite"> </br></br>
+        {{#each nationalite}}
         <option value ="{{this.NATIONALITE_NUMERO}}">{{this.NATIONALITE_NOM}}</option>
         {{/each}}
     </select></br></br>
@@ -27,6 +25,15 @@
 
     Texte :
     <textarea name="texte"></textarea> </br></br>
+
+    Photo :
+    <input type="file" accept=".jpg, .png, .jpeg, .bmp, .gif" name="photo"/></br></br>
+
+    Titre de la photo :
+    <input type="text" name="titrePhoto"/></br></br>
+
+    Commentaire de la photo :
+    <input type="text" name="commentairePhoto"/></br></br>
 
     <input type="submit" value="Submit">
 </form>

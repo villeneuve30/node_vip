@@ -1,7 +1,6 @@
 let model = require("../models/vip.js"),
-let moment = require("moment"),
+moment = require("moment"),
 async = require("async");
-
 
 // ///////////////////////// MODFIFIER AJOUTER SUPPRIMER
 module.exports.VIP = function(request, response){
@@ -20,10 +19,10 @@ module.exports.AjouterVip = function(request, response){
             console.log(err);
             return;
         }
-        response.nationnalite = result;
+        response.nationalite = result;
         console.log(result);
         response.render('ajouterVip', response);
-    } );
+    });
 }
 module.exports.ValidationAjout = function(request, response){
     response.title = 'vip bien ajouté';
@@ -32,16 +31,20 @@ module.exports.ValidationAjout = function(request, response){
     nom = request.body.nom;
     prenom = request.body.prenom;
     sexe = request.body.sexe;
-    naissance = request.body.date;
+    naissance = request.body.naissance;
     texte = request.body.texte;
     dateInsertion = moment().format('YYYY-MM-DD hh:mm:ss');
 
-    async.parallel([
+    sujetPhoto = request.body.titrePhoto;
+    commentairePhoto = request.body.commentairePhoto;
+    adressePhoto = request.body.photo;
+
+    async.series([
         function(callback){
             model.ajouterInfoVip(nationalite,nom,prenom,sexe,naissance,texte,dateInsertion, function(err,result) {callback(null, result)});
         },
         function(callback){
-            model.ajouterPhotoVip(numero, function(err,result) {callback(null, result)});
+            model.ajouterPhotoVip(sujetPhoto,commentairePhoto,adressePhoto, function(err,result) {callback(null, result)});
         }
     ],
     function(err,result){
@@ -49,7 +52,6 @@ module.exports.ValidationAjout = function(request, response){
             console.log(err);
             return;
         }
-
         response.render('vipBienAjoute', response);
     });
 
