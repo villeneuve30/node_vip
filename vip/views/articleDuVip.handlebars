@@ -1,0 +1,12 @@
+{{> choixVip}}
+<div class="article">
+    <form>
+        <fieldset>
+            <legend>Article</legend>
+            <h2>{{vipDetails.0.VIP_PRENOM}} {{vipDetails.0.VIP_NOM}}</h2>
+            <p>{{vipDetails.0.VIP_TEXTE}}</p>
+            <p>Ajouté le {{formatDate vipDetails.0.VIP_DATE_INSERTION 'D MMMM YYYY'}}</p>
+            <a href="/repertoire/vip/{{vipDetails.0.VIP_NUMERO}}">Voir fiche</a>
+        </fieldset>
+    </form>
+</div>

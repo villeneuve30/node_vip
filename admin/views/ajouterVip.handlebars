@@ -1,0 +1,32 @@
+<h1>Ajouter</h1>
+<form method="POST" action="/vips/ajouter/validationAjout">
+    Photo :
+    <input type="file" accept=".jpg, .png, .jpeg, .bmp, .gif" name="photo"/></br></br>
+    
+    Nom :
+    <input type="text" name="nom"/> </br></br>
+
+    Prenom :
+    <input type="text" name="prenom"/> </br></br>
+
+    Nationnalité :
+    <select name="nationnalite"> </br></br>
+        {{#each nationnalite}}
+        <option value ="{{this.NATIONALITE_NUMERO}}">{{this.NATIONALITE_NOM}}</option>
+        {{/each}}
+    </select></br></br>
+
+    Sexe :
+    <select name="sexe"> </br></br>
+        <option value ="F">Femme</option>
+        <option value ="M">Homme</option>
+    </select></br></br>
+
+    Date de naissance :
+    <input type="date" name="naissance"/> </br></br>
+
+    Texte :
+    <textarea name="texte"></textarea> </br></br>
+
+    <input type="submit" value="Submit">
+</form>

@@ -1,0 +1,5 @@
+{{#if session.admin}}
+<div class="connexion"><p>Bonjour {{session.admin}}</p></div>
+{{else}}
+<div class="connexion"><a href="/connexion"><button id="boutonConnexion">Connexion</button></a></div>
+{{/if}}

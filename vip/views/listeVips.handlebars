@@ -1,0 +1,9 @@
+{{> repertoireVips}}
+</br>
+</br>
+{{#each listeVip}}
+    <a class="photo" href="/repertoire/vip/{{this.numero}}">
+      <img class="photoVip" src="/images/vip/{{this.photo}}"/>
+      <p>{{this.nom}} {{this.prenom}}</p>
+    </a>
+{{/each}}

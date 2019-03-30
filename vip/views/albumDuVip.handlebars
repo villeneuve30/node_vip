@@ -1,0 +1,20 @@
+<div id="test">
+    <form>
+        <fieldset>
+            <legend>{{vipDetails.0.VIP_NOM}} {{vipDetails.0.VIP_PRENOM}}</legend>
+            <div id="paginationVip">
+                {{#each vipPhoto}}
+                <li style="list-style-type: none; ">
+                    <img id="imageSoloDuVip" src="/images/vip/{{this.PHOTO_ADRESSE}}">
+                    <fieldset>
+                        <legend>Commentaire</legend>
+                        <p>{{this.PHOTO_COMMENTAIRE}}</p>
+                    </fieldset>
+                </li>
+                {{/each}}
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+{{> paginationPhotoVip}}
