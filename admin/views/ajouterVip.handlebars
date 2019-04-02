@@ -2,10 +2,10 @@
 <form method="POST" action="/vips/ajouter/validationAjout">
 
     Nom :
-    <input type="text" name="nom"/> </br></br>
+    <input type="text" name="nom" required/> </br></br>
 
     Prenom :
-    <input type="text" name="prenom"/> </br></br>
+    <input type="text" name="prenom" required/> </br></br>
 
     Nationnalité :
     <select name="nationalite"> </br></br>
@@ -21,19 +21,19 @@
     </select></br></br>
 
     Date de naissance :
-    <input type="date" name="naissance"/> </br></br>
+    <input type="date" name="naissance" required/> </br></br>
 
     Texte :
-    <textarea name="texte"></textarea> </br></br>
+    <textarea name="texte" required></textarea> </br></br>
 
     Photo :
-    <input type="file" accept=".jpg, .png, .jpeg, .bmp, .gif" name="photo"/></br></br>
+    <input type="file" accept=".jpg, .png, .jpeg, .bmp, .gif" name="photo" required/></br></br>
 
     Titre de la photo :
-    <input type="text" name="titrePhoto"/></br></br>
+    <input type="text" name="titrePhoto" required/></br></br>
 
     Commentaire de la photo :
-    <input type="text" name="commentairePhoto"/></br></br>
+    <input type="text" name="commentairePhoto" required/></br></br>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Ajouter">
 </form>

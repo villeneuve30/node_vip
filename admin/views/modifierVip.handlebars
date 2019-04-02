@@ -1,1 +1,50 @@
-<h1>Modifier</h1>
+{{> selectVip}}
+<h1> Modifier {{detailVip.VIP_PRENOM}} {{detailVip.VIP_NOM}}</h1>
+<form method="POST" action="/vips/modifier/modificationEffectue/{{detailVip.VIP_NUMERO}}">
+
+    Nom :
+    <input type="text" name="nom" value="{{detailVip.VIP_NOM}}" required/> </br></br>
+
+    Prenom :
+    <input type="text" name="prenom" value="{{detailVip.VIP_PRENOM}}" required/> </br></br>
+
+    Nationnalité :
+    <select name="nationalite"> </br></br>
+        <option selected value="{{detailVip.NATIONALITE_NUMERO}}" >{{nationalite.NATIONALITE_NOM}}</option>
+        {{#each allNationalites}}
+        <option value ="{{this.NATIONALITE_NUMERO}}">{{this.NATIONALITE_NOM}}</option>
+        {{/each}}
+    </select></br></br>
+
+    Sexe :
+    <select name="sexe">
+            {{#ifCond detailVip.VIP_SEXE '===' 'M'}}
+            <option value ="F">Femme</option>
+            <option value ="M" selected>Homme</option>
+            {{else}}
+            <option value ="F" selected>Femme</option>
+            <option value ="M">Homme</option>
+            {{/ifCond}}
+    </select></br></br>
+
+    Date de naissance :
+    <input type="date" name="naissance" value="{{formatDate detailVip.VIP_NAISSANCE 'YYYY-MM-DD'}}" required/> </br></br>
+
+    Texte :
+    <textarea name="texte" required>{{detailVip.VIP_TEXTE}}</textarea> </br></br>
+
+    Photo actuelle :
+    <img src="/images/vip/{{photo.PHOTO_ADRESSE}}"/></br></br>
+
+    Nouvelle photo ? :
+    <input type="file" accept=".jpg, .png, .jpeg, .bmp, .gif" id="selectPhoto" onchange="modifInput()"/></br></br>
+    <input type="text" value="{{photo.PHOTO_ADRESSE}}" name="photo" id="inputPhoto">
+
+    Titre de la photo :
+    <input type="text" name="titrePhoto" value="{{photo.PHOTO_SUJET}}" required/></br></br>
+
+    Commentaire de la photo :
+    <input type="text" name="commentairePhoto" value="{{photo.PHOTO_COMMENTAIRE}}" required/></br></br>
+
+    <input type="submit" value="Valider">
+</form>

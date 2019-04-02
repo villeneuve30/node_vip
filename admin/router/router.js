@@ -17,7 +17,11 @@ module.exports = function(app){
     app.get('/vips',HomeController.VerifConnecte, VipController.VIP);
     app.get('/vips/ajouter',HomeController.VerifConnecte,VipController.AjouterVip);
     app.post('/vips/ajouter/validationAjout',HomeController.VerifConnecte,VipController.ValidationAjout);
-    app.get('/vips/modifier',HomeController.VerifConnecte,VipController.ModifierVip);
+
+    app.get('/vips/modifier',HomeController.VerifConnecte,VipController.Modifier);
+    app.get('/vips/modifier/:numero',HomeController.VerifConnecte,VipController.ModifierVip);
+    app.post('/vips/modifier/modificationEffectue/:numero',HomeController.VerifConnecte,VipController.ValidationModification);
+    
     app.get('/vips/supprimer',HomeController.VerifConnecte,VipController.SupprimerVip);
 
     //PHOTO

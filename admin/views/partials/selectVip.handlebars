@@ -1,0 +1,6 @@
+<select name="vipSelected" onchange="location = '/vips/modifier/'+ this.value;">
+    <option style="display: none">Choisir un V.I.P</option>
+    {{#each vips}}
+    <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
+    {{/each}}
+</select>

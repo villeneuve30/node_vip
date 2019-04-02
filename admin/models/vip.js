@@ -35,7 +35,7 @@ module.exports.resultatLettre = function(lettre,callback) {
 module.exports.getPhotoVip = function(numero,callback) {
     db.getConnection(function(err, connexion) {
         if (!err) {
-            let sql = "SELECT PHOTO_ADRESSE FROM photo p JOIN vip v ON v.VIP_NUMERO=p.VIP_NUMERO WHERE p.VIP_NUMERO="+numero+";"
+            let sql = "SELECT PHOTO_ADRESSE,PHOTO_SUJET,PHOTO_COMMENTAIRE FROM photo p JOIN vip v ON v.VIP_NUMERO=p.VIP_NUMERO WHERE p.VIP_NUMERO="+numero+";"
             //console.log(sql);
             connexion.query(sql, callback);
             connexion.release();
@@ -99,7 +99,7 @@ module.exports.getLiaisonVip = function(numero,callback) {
 module.exports.getDetailVip = function(numero,callback) {
     db.getConnection(function(err, connexion) {
         if (!err) {
-            let sql = "SELECT VIP_NUMERO,VIP_PRENOM,VIP_NOM,VIP_NAISSANCE,VIP_TEXTE,VIP_DATE_INSERTION FROM vip WHERE VIP_NUMERO="+numero+";"
+            let sql = "SELECT NATIONALITE_NUMERO,VIP_NUMERO,VIP_PRENOM,VIP_NOM,VIP_NAISSANCE,VIP_TEXTE,VIP_DATE_INSERTION,VIP_SEXE FROM vip WHERE VIP_NUMERO="+numero+";"
             //console.log(sql);
             connexion.query(sql, callback);
             connexion.release();
@@ -175,7 +175,7 @@ module.exports.getParametreConnexion = function(callback){
 module.exports.getAllNationnalite = function(callback){
     db.getConnection(function(err, connexion) {
         if (!err) {
-            let sql = "SELECT NATIONALITE_NUMERO, NATIONALITE_NOM FROM nationalite;"
+            let sql = "SELECT NATIONALITE_NUMERO, NATIONALITE_NOM FROM nationalite ORDER BY NATIONALITE_NOM ASC;"
             //console.log(sql);
             connexion.query(sql, callback);
             connexion.release();
@@ -197,6 +197,26 @@ module.exports.ajouterPhotoVip = function(sujet,commentaire,adresse,callback){
         if (!err) {
             let sql = "INSERT INTO photo (PHOTO_NUMERO,VIP_NUMERO,PHOTO_SUJET,PHOTO_COMMENTAIRE,PHOTO_ADRESSE) VALUES (1,LAST_INSERT_ID(),'"+sujet+"','"+commentaire+"','"+adresse+"');"
             //console.log(sql);
+            connexion.query(sql, callback);
+            connexion.release();
+        }
+    });
+};
+module.exports.modifierInfoVip = function(numero,nationalite,nom,prenom,sexe,naissance,texte,callback){
+    db.getConnection(function(err, connexion) {
+        if (!err) {
+            let sql = "UDPATE vip SET NATIONALITE_NUMERO ="+nationalite+", VIP_NOM = '"+nom+"',VIP_PRENOM ='"+prenom+"',VIP_SEXE = '"+sexe+"',VIP_NAISSANCE = '"+naissance+"',VIP_TEXTE = '"+texte+"' WHERE VIP_NUMERO = "+numero+";"
+            console.log(sql);
+            connexion.query(sql, callback);
+            connexion.release();
+        }
+    });
+};
+module.exports.modifierPhotoVip = function(numero,sujet,commentaire,adresse,callback){
+    db.getConnection(function(err, connexion) {
+        if (!err) {
+            let sql = "UPDATE photo SET PHOTO_SUJET='"+sujet+"',PHOTO_COMMENTAIRE='"+commentaire+"',PHOTO_ADRESSE='"+adresse+"' WHERE PHOTO_NUMERO = 1 AND VIP_NUMERO ="+numero+";"
+            console.log(sql);
             connexion.query(sql, callback);
             connexion.release();
         }
